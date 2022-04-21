@@ -8,7 +8,7 @@ app.disable('X-powered-by');
 // https://regbrain.com/article/cache-headers-express-js
 // Fix the following issue: ZAP Scan Baseline Report #11
 const setCache = function (req, res, next) {
-  res.set('Cache-control', 'no-store');
+  res.set('Cache-control', 'no-cache, no-store, must-revalidate');
   next();
 };
 
