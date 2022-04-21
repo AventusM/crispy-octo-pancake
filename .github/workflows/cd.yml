@@ -8,7 +8,9 @@ on:
 jobs:
   deployment:
     name: Deploy to Test environment
-    environment: test
+    environment:
+      name: Test
+      url: https://aventus-devsecops-test.herokuapp.com
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
