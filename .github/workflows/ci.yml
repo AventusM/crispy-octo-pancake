@@ -6,7 +6,8 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  ci_pipeline:
+  ci_pipeline_tests:
+    name: CI Pipeline
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
@@ -21,3 +22,33 @@ jobs:
         run: npm run test:unit
       - name: Run integration tests
         run: npm run test:integration
+  SAST:
+    name: Analyze
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ javascript ]
+        # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
+        # Learn more about CodeQL language support at https://git.io/codeql-language-support
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Initializes the CodeQL tools for scanning.
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v2
+      with:
+        languages: ${{ matrix.language }}
+
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v2
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v2
