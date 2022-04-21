@@ -22,8 +22,8 @@ jobs:
         run: npm run test:unit
       - name: Run integration tests
         run: npm run test:integration
-  SAST:
-    name: Analyze
+  code_security_test_SAST:
+    name: SAST
     runs-on: ubuntu-latest
     permissions:
       actions: read
