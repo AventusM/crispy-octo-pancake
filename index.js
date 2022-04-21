@@ -8,18 +8,7 @@ app.disable('X-powered-by');
 // https://regbrain.com/article/cache-headers-express-js
 // Fix the following issue: ZAP Scan Baseline Report #11
 const setCache = function (req, res, next) {
-  // here you can define period in second, this one is 5 minutes
-  //const period = 60 * 5;
-
-  // you only want to cache for GET requests
-  if (req.method == 'GET') {
-    res.set('Cache-control', 'must-revalidate');
-  } else {
-    // for the other requests set strict no caching parameters
-    res.set('Cache-control', 'no-store');
-  }
-
-  // remember to call next() to pass on the request
+  res.set('Cache-control', 'no-store');
   next();
 };
 
