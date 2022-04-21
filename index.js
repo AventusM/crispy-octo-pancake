@@ -9,11 +9,11 @@ app.disable('X-powered-by');
 // Fix the following issue: ZAP Scan Baseline Report #11
 const setCache = function (req, res, next) {
   // here you can define period in second, this one is 5 minutes
-  const period = 60 * 5;
+  //const period = 60 * 5;
 
   // you only want to cache for GET requests
   if (req.method == 'GET') {
-    res.set('Cache-control', `public, max-age=${period}`);
+    res.set('Cache-control', 'must-revalidate');
   } else {
     // for the other requests set strict no caching parameters
     res.set('Cache-control', 'no-store');
