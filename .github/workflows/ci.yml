@@ -6,8 +6,8 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  ci_pipeline_tests:
-    name: CI Pipeline
+  code_tests:
+    name: Static analysis / Unit / Integration tests
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
