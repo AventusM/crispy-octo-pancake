@@ -15,8 +15,8 @@ jobs:
         with:
           node-version: '16'
       - name: Install dependencies
-        run: npm install  
-      - name: Run static analysis    
+        run: npm install
+      - name: Run static analysis
         run: npm run lint
       - name: Run unit tests
         run: npm run test:unit
@@ -24,10 +24,18 @@ jobs:
         run: npm run test:integration
 
   software_composition_analysis:
-    name: CycloneDX Node.js Generate SBOM
+    name: SCA --> SBOM
     runs-on: ubuntu-latest
     steps:
-      - uses: CycloneDX/gh-node-module-generatebom@v1.0.0
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: npm install
+      - name: CycloneDX Node.js Generate SBOM
+        uses: CycloneDX/gh-node-module-generatebom@v1.0.0
+
 
 
   code_security_test_SAST:
