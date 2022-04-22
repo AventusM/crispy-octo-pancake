@@ -23,18 +23,39 @@ jobs:
       - name: Run integration tests
         run: npm run test:integration
 
-  software_composition_analysis:
-    name: SCA --> SBOM
+  Dependency_Check_SCA:
     runs-on: ubuntu-latest
+    name: depecheck_test
     steps:
-      - uses: actions/checkout@v3
+    # Check out
+      - name: Checkout
+        uses: actions/checkout@v2
+
+    # Install node.js dependencies
+      - name: Build project with NPM
       - uses: actions/setup-node@v2
         with:
           node-version: '16'
-      - name: Install dependencies
         run: npm install
-      - name: CycloneDX Node.js Generate SBOM
-        uses: CycloneDX/gh-node-module-generatebom@v1.0.0
+
+    # Run the dependency check tool
+      - name: Depcheck
+        uses: dependency-check/Dependency-Check_Action@main
+        id: Depcheck
+        with:
+          project: 'test'
+          path: '.'
+          format: 'HTML'    
+          args: >
+            --failOnCVSS 7
+            --enableRetired
+
+    # Upload result artifact (similar to OWASP ZAP)
+      - name: Upload Test results
+        uses: actions/upload-artifact@master
+        with:
+           name: Depcheck report
+           path: ${{github.workspace}}/reports
 
 
 
