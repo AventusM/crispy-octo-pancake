@@ -15,13 +15,49 @@ jobs:
         with:
           node-version: '16'
       - name: Install dependencies
-        run: npm install  
-      - name: Run static analysis    
+        run: npm install
+      - name: Run static analysis
         run: npm run lint
       - name: Run unit tests
         run: npm run test:unit
       - name: Run integration tests
         run: npm run test:integration
+
+  Dependency_Check_SCA:
+    runs-on: ubuntu-latest
+    name: depecheck_test
+    steps:
+    # Check out
+      - name: Checkout
+        uses: actions/checkout@v2
+
+    # Install node.js dependencies
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: npm install
+
+    # Run the dependency check tool
+      - name: Depcheck
+        uses: dependency-check/Dependency-Check_Action@main
+        id: Depcheck
+        with:
+          project: 'test'
+          path: '.'
+          format: 'HTML'    
+          args: >
+            --failOnCVSS 7
+            --enableRetired
+
+    # Upload result artifact (similar to OWASP ZAP)
+      - name: Upload Test results
+        uses: actions/upload-artifact@master
+        with:
+           name: Depcheck report
+           path: ${{github.workspace}}/reports
+
+
 
   code_security_test_SAST:
     needs: code_tests # Run after non-security tests
