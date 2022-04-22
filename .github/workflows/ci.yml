@@ -33,7 +33,7 @@ jobs:
 
     # Install node.js dependencies
       - name: Build project with NPM
-      - uses: actions/setup-node@v2
+        uses: actions/setup-node@v2
         with:
           node-version: '16'
         run: npm install
