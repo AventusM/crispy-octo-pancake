@@ -23,6 +23,13 @@ jobs:
       - name: Run integration tests
         run: npm run test:integration
 
+  software_composition_analysis:
+    name: CycloneDX Node.js Generate SBOM
+    runs-on: ubuntu-latest
+    steps:
+      - uses: CycloneDX/gh-node-module-generatebom@v1.0.0
+
+
   code_security_test_SAST:
     needs: code_tests # Run after non-security tests
     name: SAST
