@@ -59,7 +59,7 @@ jobs:
 
 
 
-  code_security_test_SAST:
+  code_security_test_SAST_CODEQL:
     needs: code_tests # Run after non-security tests
     name: SAST
     runs-on: ubuntu-latest
@@ -91,7 +91,7 @@ jobs:
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
 
-  code_security_test_SAST_SNYK
+  code_security_test_SAST_SNYK:
     name: Example workflow for Node using Snyk
     on: push
     jobs:
