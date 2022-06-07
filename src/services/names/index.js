@@ -1,8 +1,7 @@
 const db = require('../database');
 
 const getAll = () => {
-  const data = db.query('SELECT * FROM name');
-  return data;
+  return db.query('SELECT * FROM name');
 };
 
 const getOne = (paramId) => {
@@ -12,8 +11,7 @@ const getOne = (paramId) => {
 };
 
 const getOneDangerously = (paramId) => {
-  const data = db.query(`SELECT * FROM name WHERE id=${paramId} OR 1=1`);
-  return data;
+  return db.query(`SELECT * FROM name WHERE id=${paramId} OR 1=1`);
 };
 
 module.exports ={
