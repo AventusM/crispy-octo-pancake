@@ -1,0 +1,2 @@
+GET http://localhost:3001/names
+content-type: application/json

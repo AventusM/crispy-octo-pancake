@@ -4,8 +4,6 @@ on:
   pull_request:    
     branches: [master]    
     types: [opened, synchronize]
-  push:
-    branches: [master]
 
 jobs:
   code_tests:
@@ -41,7 +39,7 @@ jobs:
 
   code_security_test_SAST_CODEQL:
     needs: code_tests # Run after non-security tests
-    name: SAST
+    name: CodeQL SAST
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -72,7 +70,8 @@ jobs:
       uses: github/codeql-action/analyze@v2
 
   code_security_test_SAST_SNYK:
-    name: Example workflow for Node using Snyk
+    name: Snyk SAST
+    needs: code_tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
