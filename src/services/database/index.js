@@ -1,17 +1,13 @@
-const sqlite = require('better-sqlite3');
-const path = require('path');
-const db = new sqlite(path.resolve('names.db'), {fileMustExist: true});
-
-const query = (sqlQuery, params = []) => {
-  return db.prepare(sqlQuery).all(params);
-};
-
-const run = (sqlQuery, params = []) => {
-  return db.prepare(sqlQuery).run(params);
-};
+const { Pool } = require('pg');
 
 
-module.exports = {
-  query,
-  run
-};
+const pool = new Pool({
+  user: 'postgres',
+  database: 'postgres',
+  password: process.env.DATABASE_PASSWORD,
+  port: 5432,
+  host: 'localhost',
+});
+
+
+module.exports = pool;

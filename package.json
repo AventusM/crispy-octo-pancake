@@ -26,8 +26,10 @@
   "dependencies": {
     "@cyclonedx/bom": "^3.7.0",
     "better-sqlite3": "^7.5.3",
+    "dotenv": "^16.0.1",
     "express": "^4.17.3",
     "helmet": "^5.0.2",
+    "pg": "^8.7.3",
     "sqlite3": "^5.0.8"
   },
   "devDependencies": {
