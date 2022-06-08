@@ -1,7 +1,8 @@
 const db = require('./index');
+const {faker} = require('@faker-js/faker');
 
 const init = async () => {
-  const [name] = process.argv.slice(2);
+  const name = faker.name.firstName();
   try {
     // Use to initialize
     await db.query(
