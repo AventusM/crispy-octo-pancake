@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet');
 const {namesRouter} = require('./src/routes');
+const init = require('./src/services/database/initMock');
 
 const app = express();
 app.use(helmet());
@@ -33,6 +34,7 @@ app.get('*', (_req, res) => {
 });
 
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log('Server running on PORT:' + PORT);
+  await init();
 });
