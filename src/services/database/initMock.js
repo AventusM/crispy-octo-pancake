@@ -1,8 +1,15 @@
 const db = require('./index');
 
-const insertData = async () => {
+const init = async () => {
   const [name] = process.argv.slice(2);
   try {
+    // Use to initialize
+    await db.query(
+      `CREATE TABLE IF NOT EXISTS names (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(16) NOT NULL)`
+    );
+
     await db.query(
       'INSERT INTO names (name) VALUES ($1)',
       [name]
@@ -13,4 +20,4 @@ const insertData = async () => {
   }
 };
 
-insertData();
+init();
