@@ -1,2 +1,2 @@
-GET http://localhost:3001/names/?id=3 or 1=1
+GET http://localhost:3001/names/?id=2
 content-type: application/json
