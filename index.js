@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet');
 const src = require('./src');
-const init = require('./src/services/database/initMock');
+// const init = require('./src/services/database/initMock');
 
 const app = express();
 app.use(helmet());
