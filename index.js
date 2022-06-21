@@ -2,8 +2,8 @@ require('dotenv').config();
 
 const express = require('express');
 const helmet = require('helmet');
-const {namesRouter} = require('./src/routes');
-const init = require('./src/services/database/initMock');
+const src = require('./src');
+// const init = require('./src/services/database/initMock');
 
 const app = express();
 app.use(helmet());
@@ -11,7 +11,7 @@ app.disable('X-powered-by');
 
 // https://regbrain.com/article/cache-headers-express-js
 // Fix the following issue: ZAP Scan Baseline Report #11
-const setCache = function (req, res, next) {
+const setCache = function (_req, res, next) {
   res.set('Cache-control', 'no-cache, no-store, must-revalidate');
   next();
 };
@@ -25,8 +25,7 @@ app.get('/', (_req, res) => {
 });
 
 
-app.use('/names', namesRouter);
-
+app.use('/names', src.routes.namesRouter);
 
 app.get('*', (_req, res) => {
   console.log('Error page');
@@ -39,4 +38,4 @@ app.listen(PORT, () => {
 });
 
 // Database check
-init();
+// init();

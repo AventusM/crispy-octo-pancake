@@ -1,0 +1,2 @@
+GET http://localhost:3001/names/unsafe/2 OR 1=1
+content-type: application/json
