@@ -25,13 +25,14 @@
   "homepage": "https://github.com/AventusM/crispy-octo-pancake#readme",
   "dependencies": {
     "@cyclonedx/bom": "^3.7.0",
+    "@faker-js/faker": "^7.2.0",
     "better-sqlite3": "^7.5.3",
     "dotenv": "^16.0.1",
-    "express": "^4.17.3",
+    "express": "^4.18.1",
     "helmet": "^5.0.2",
     "pg": "^8.7.3",
     "sqlite3": "^5.0.8",
-    "@faker-js/faker": "^7.2.0"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "eslint": "^8.13.0",
