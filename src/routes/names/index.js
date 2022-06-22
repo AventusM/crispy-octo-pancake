@@ -25,7 +25,7 @@ router.get('/:id', [middlewares.names.checkNamesParameters], async (req, res, ne
   }
 });
 
-/* router.get('/unsafe/:id', async (req, res, next) => {
+router.get('/unsafe/:id', async (req, res, next) => {
   try {
     console.log('/names/unsafe/:id router path');
     const response = await services.names.getOneDangerously(req.params.id);
@@ -34,6 +34,6 @@ router.get('/:id', [middlewares.names.checkNamesParameters], async (req, res, ne
     console.error(e.message);
     next(e);
   }
-}); */
+});
 
 module.exports = router;
